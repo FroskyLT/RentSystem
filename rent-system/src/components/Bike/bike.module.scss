@@ -1,0 +1,53 @@
+.bike {
+    padding: 20px;
+    flex-grow: 1;
+
+    .left {
+        // display: flex;
+        // align-items: center;
+
+        .image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+    }
+
+    .right {
+        padding-left: 20px;
+        text-align: end;
+
+        .card {
+            text-align: start;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin-bottom: 20px;
+
+            &__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .chipContainer {
+                display: flex;
+                gap: 10px;
+                font-weight: 600;
+            }
+            
+            .name {
+                font-size: 32px;
+                font-weight: 700;
+            }
+
+            .description {
+                margin: 15px 0;
+                color: #666;
+                text-align: justify;
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 import HeaderMenu from './HeaderMenu';
 
-export const Header = ({ loggedIn }: { loggedIn: boolean }) => {
+export const Header = ({ loggedIn, logout }: { loggedIn: boolean, logout: () => void }) => {
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -14,7 +14,7 @@ export const Header = ({ loggedIn }: { loggedIn: boolean }) => {
         />
       </Link>
       {loggedIn && <div className={styles.buttons}>
-        <HeaderMenu />
+        <HeaderMenu logout={logout}/>
       </div>
       }
     </header>

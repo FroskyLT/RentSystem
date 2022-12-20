@@ -1,0 +1,46 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "david@gmail.com",
+            "password": "abc1234",
+            "admin": true
+        },
+        {
+            "id": 2,
+            "email": "jonas@gmail.com",
+            "password": "123abc",
+            "admin": false
+        }
+    ],
+    "bikes": [
+        {
+            "bikeId": 1,
+            "name": "Miesto",
+            "type": "City",
+            "status": "Laisvas",
+            "price": 15
+        },
+        {
+            "bikeId": 2,
+            "name": "Kalnų",
+            "type": "Mountain",
+            "status": "Laisvas",
+            "price": 20
+        },
+        {
+            "bikeId": 3,
+            "name": "BMX",
+            "type": "BMX",
+            "status": "Užimtas",
+            "price": 13
+        },
+        {
+            "bikeId": 4,
+            "name": "Miesto",
+            "type": "City",
+            "status": "Laisvas",
+            "price": 15
+        }
+    ]
+}

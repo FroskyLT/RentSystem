@@ -1,16 +1,17 @@
+import { useParams } from 'react-router-dom';
+
 import { Button, Chip, Grid, Rating } from '@mui/material';
-import React from 'react';
 import { IBike } from '../../model/interfaces';
 import styles from './bike.module.scss';
+import { useState } from 'react';
 
-export const Bike = () => {
-  const bike: IBike = {
-    bikeId: 1,
-    name: "Mountain",
-    type: "Kalnu",
-    status: "Laisvas",
-    price: 15
-  }
+export const Bike = ({ bikes }: { bikes: IBike[] }) => {
+  const [isRenting, setIsRenting] = useState(false);
+
+  const { id } = useParams();
+  const bike = bikes?.find(bike => bike.bikeId === Number(id));
+
+  const randomNumber = Math.floor(Math.random() * (5 - 1 + 1) + 1) // random rating
 
   return (
     <Grid className={styles.bike} container>
@@ -27,10 +28,10 @@ export const Bike = () => {
             </div>
           </div>
           <div className={styles.type}><strong>Dviračio tipas:</strong> {bike.type}</div>
-          <Rating name="read-only" value={4} readOnly />
+          <Rating name="read-only" value={randomNumber} readOnly />
           <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed augue lectus. Vivamus tincidunt odio ut sagittis pellentesque. Phasellus ut sodales urna. Nunc id suscipit augue. Pellentesque vel lacus ac est vulputate feugiat. Curabitur imperdiet odio ex, sit amet feugiat diam efficitur hendrerit. Aliquam erat volutpat.</p>
         </div>
-        <Button variant="contained">Išsinuomoti</Button>
+        <Button variant={!isRenting ? "contained" : "outlined"} onClick={() => setIsRenting(!isRenting)}>{isRenting ? "Baigti" : "Išsinuomoti"}</Button>
       </Grid>
     </Grid>
   );

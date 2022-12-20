@@ -6,10 +6,21 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { IBike } from '../../model/interfaces';
 
-export const AddBike = ({ isOpen, handleClose }: { isOpen: boolean, handleClose: () => void }) => {
+export const AddBike = ({ isOpen, addBike, handleClose }: { isOpen: boolean, addBike: (bike: IBike) => void, handleClose: () => void }) => {
     const submitHandler = (e: any) => {
         e.preventDefault();
+
+        const data = new FormData(e.currentTarget);
+        const newBike: IBike = {
+            bikeId: (new Date()).getTime(),
+            name: data.get('name') as string,
+            type: data.get('type') as string,
+            status: "Laisvas",
+            price: Number(data.get('price')) as number
+        }
+        addBike(newBike);
         handleClose();
     }
 

@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IBike } from '../../model/interfaces';
 import Chip from '@mui/material/Chip';
 
-export default function MediaControlCard({ isAdmin, bike }: { isAdmin: boolean, bike: IBike }) {
+export default function MediaControlCard({ isAdmin, bike, removeBike }: { isAdmin: boolean, bike: IBike, removeBike: (id: number) => void }) {
   return (
     <Card sx={{ display: 'flex', minWidth: '300px', justifyContent: "space-between" }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -29,7 +29,7 @@ export default function MediaControlCard({ isAdmin, bike }: { isAdmin: boolean, 
           <Chip className={styles.price} label={`${bike.price} €/val.`} color={bike.status !== "Laisvas" ? "error" : "primary"} />
         </CardContent>
         {isAdmin && <div style={{ padding: "0 0 5px 5px" }}>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={() => removeBike(bike.bikeId)}>
             <DeleteIcon />
           </IconButton>
           <IconButton aria-label="edit">

@@ -6,48 +6,18 @@ import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Card from './Card';
 import { AddBike } from '../AddBike/AddBike';
-import { IBike } from '../../model/interfaces';
+import { IBike, IUser } from '../../model/interfaces';
 
 interface IDashboardProps {
     loggedIn: boolean;
-    isAdmin: boolean;
+    bikes: IBike[];
+    user?: IUser;
+    addBike: (bike: IBike) => void;
+    removeBike: (id: number) => void;
 }
-
-const bikeList: IBike[] = [{
-    bikeId: 1,
-    name: "Mountain",
-    status: "Laisvas",
-    type: "Kalnu",
-    price: 15
-}, {
-    bikeId: 2,
-    name: "City",
-    status: "Laisvas",
-    type: "Miesto",
-    price: 10
-}, {
-    bikeId: 3,
-    name: "Sport",
-    status: "Laisvas",
-    type: "Sporto",
-    price: 20
-}, {
-    bikeId: 4,
-    name: "City",
-    status: "Uzimtas",
-    type: "Miesto",
-    price: 10
-}, {
-    bikeId: 5,
-    name: "Mountain",
-    status: "Laisvas",
-    type: "Kalnu",
-    price: 15
-}];
 
 export const Dashboard = (props: IDashboardProps) => {
     let navigate = useNavigate();
-
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -62,21 +32,22 @@ export const Dashboard = (props: IDashboardProps) => {
         setIsOpen(false);
     };
 
-    const cardList = bikeList.filter(bike => props.isAdmin || bike.status === "Laisvas").map(bike => <Card
+    const cardList = props.bikes.filter(bike => props.user?.admin || bike.status === "Laisvas").map(bike => <Card
         key={bike.bikeId}
-        isAdmin={props.isAdmin}
+        isAdmin={props.user?.admin}
         bike={bike}
+        removeBike={props.removeBike}
     />);
 
     return <div className={styles.dashboard}>
-        {props.isAdmin && <Button
+        {props.user?.admin && <Button
             color='primary'
             variant='contained'
             onClick={openHandler}
             startIcon={<AddIcon />}
         >Pridėti dviratį</Button>
         }
-        <AddBike isOpen={isOpen} handleClose={closeHandler} />
+        <AddBike isOpen={isOpen} handleClose={closeHandler} addBike={props.addBike} />
         <div className={styles.list}>
             {cardList}
         </div>

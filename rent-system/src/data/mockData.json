@@ -41,6 +41,34 @@
             "type": "City",
             "status": "Laisvas",
             "price": 15
+        },
+        {
+            "bikeId": 5,
+            "name": "Miesto",
+            "type": "City",
+            "status": "Laisvas",
+            "price": 15
+        },
+        {
+            "bikeId": 6,
+            "name": "Kalnų",
+            "type": "Mountain",
+            "status": "Laisvas",
+            "price": 20
+        },
+        {
+            "bikeId": 7,
+            "name": "BMX",
+            "type": "BMX",
+            "status": "Užimtas",
+            "price": 13
+        },
+        {
+            "bikeId": 8,
+            "name": "Miesto",
+            "type": "City",
+            "status": "Laisvas",
+            "price": 15
         }
     ]
 }

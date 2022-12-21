@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar"
 
 export interface IToastProps {
-
+    endRent: () => void;
 }
 
 export const Toast = (props: IToastProps) => <Snackbar
@@ -15,7 +15,7 @@ export const Toast = (props: IToastProps) => <Snackbar
     <Alert severity="info">
         <AlertTitle><strong>Nuomojamas dviratis</strong></AlertTitle>
         This is an information message!
-        <Button>Baigti</Button>
+        <Button onClick={props.endRent}>Baigti</Button>
     </Alert>
 </Snackbar>
 

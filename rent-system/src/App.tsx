@@ -8,7 +8,7 @@ import { Login } from './components/Login/Login';
 import Bike from './components/Bike/Bike';
 import History from './components/History/History';
 import mockData from './data/mockData.json';
-import { IBike, IData, IUser } from './model/interfaces';
+import { IBike, IData, IRent, IUser } from './model/interfaces';
 import Toast from './components/Toast/Toast';
 
 function App() {
@@ -40,6 +40,15 @@ function App() {
     setData({ ...data, bikes: data.bikes.filter(bike => bike.bikeId !== id) });
   }
 
+  const startRent = (newRent: IRent) => {
+    setData({ ...data, rent: newRent })
+  }
+
+  const endRent = () => {
+    setData({ ...data, rent: null, history: data.history ? [...data.history, { ...data.rent, endTime: new Date() }] : [{ ...data.rent, endTime: new Date() }] })
+    console.log(data.history)
+  }
+
   return (
     <BrowserRouter>
       <div className={styles.app}>
@@ -57,9 +66,9 @@ function App() {
             />} />
             <Route path="/login" element={<Login loggedIn={loggedIn} login={loginHandler} />} />
             <Route path="/history" element={<History />} />
-            <Route path="/bike/:id" element={<Bike bikes={data.bikes} />} />
+            <Route path="/bike/:id" element={<Bike bikes={data.bikes} rent={data.rent} startRent={startRent} endRent={endRent} />} />
           </Routes>
-          {data?.rent && <Toast />}
+          {data?.rent && <Toast endRent={endRent} />}
         </main>
       </div>
     </BrowserRouter>

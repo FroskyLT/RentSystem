@@ -21,6 +21,7 @@ export interface IBike {
 };
 
 export interface IRent {
+    id: number;
     startTime: Date;
     bikeId: number;
     endTime?: Date;
